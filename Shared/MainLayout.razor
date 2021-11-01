@@ -1,0 +1,31 @@
+﻿@using AntDesign
+@inherits LayoutComponentBase
+
+<div style="height:100%">
+<Layout Style="height:100%; ">
+    <Sider Style="background: #fff;">
+        <NavMenu />
+    </Sider>
+
+    <Layout Style="background: #fff;">
+
+        <Content Style="margin:10px 20px;background: #fff;" >
+            <div class = "site-layout-background"  style="height:100%">
+            @Body
+            </div>
+        </Content>
+    </Layout>
+</Layout>
+</div>
+
+@code
+{
+
+}
+
+<style>
+    .site-layout .site-layout-background 
+    {
+        background: #fff;
+    }
+</style>

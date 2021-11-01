@@ -1,0 +1,46 @@
+﻿@page "/new-item"
+@using BlazorElectronApp.Model
+@using AntDesign
+@inherits AddBase
+
+<h2>添加新项目</h2>
+<div style="width:40%;margin:20%,20%;" >
+<Form Model="@Models" Layout="@formConfigures.Layout" Size="formConfigures.Size" >
+    <FormItem Label="名字" >
+        <Input  @bind-Value="Models.Name"/>
+    </FormItem>
+    <FormItem Label="写入图鉴照片数">
+        <AntDesign.InputNumber Min=0 @bind-Value="Models.isInAtlas"/>
+    </FormItem>
+    <FormItem Label="昵称">
+        <Input @bind-Value="Models.nickname"/>
+    </FormItem>
+    <FormItem Label ="毛色分类"> 
+    </FormItem>
+    <FormItem Label="绝育时间">
+        <DatePicker @bind-Value="Models.SterilizeDate" TValue="DateTime?" Picker="@DatePickerType.Date" />
+    </FormItem>
+    <FormItem WrapperCol="GetButtonItemLayout()">
+        <Button Type="@ButtonType.Primary" HtmlType="submit">
+            提交
+        </Button>
+    </FormItem>
+</Form>
+</div>
+@code
+{
+    public class formConfigure
+    {
+        public string Layout = FormLayout.Vertical;
+        public string Size = AntSizeLDSType.Large;
+
+    }
+
+    formConfigure formConfigures = new();
+
+    
+    public ColLayoutParam GetButtonItemLayout()
+        {
+            return formConfigures.Layout == FormLayout.Horizontal ? new ColLayoutParam { Span = "14", Offset = "4" } : null;
+        }
+}
