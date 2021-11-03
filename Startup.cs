@@ -32,6 +32,7 @@ namespace BlazorElectronApp
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddAntDesign();
+            services.AddElectron();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +69,26 @@ namespace BlazorElectronApp
                     Fullscreenable = true
                             });
                 window.SetTitle("Blazor Demo App");
+              
+                window.OnClose +=  async () =>
+                {   
+                    var config = new MessageBoxOptions("是否要退出")
+                    {
+                        Type = MessageBoxType.info,
+                        Buttons = new string[] { "是", "否" },
+                    };
+                    var result = await Electron.Dialog.ShowMessageBoxAsync(config);
+                    if (result.Response == 0 )
+                    {
+                        window.Show();
+                    }
+                    else
+                    {
+                        window.Close();
+                    };    
+                  
+                };
+
             });
         }
     }

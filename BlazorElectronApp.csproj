@@ -3,6 +3,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\AddItem.razor.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\AddItem.razor.css" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.10.1" />
     <PackageReference Include="ElectronNET.API" Version="13.5.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
