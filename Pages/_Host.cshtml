@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="BlazorElectronApp.styles.css" rel="stylesheet" />
+    <script>
+        const { ipcRenderer } = require("electron");
+
+        window.on('close', e => {
+            e.preventDefault();
+            ipcRenderer.send("onClose");
+        });
+    </script>
 </head>
 <body>
     <component type="typeof(App)" render-mode="ServerPrerendered" />

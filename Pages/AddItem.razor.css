@@ -1,16 +1,9 @@
-﻿@media  (min-width: 1200px)
-{
-    .formsinput {
-        width: 700px;
-        margin-top: 2%
-    }
-}
-.formsinput {
+﻿.formsinput {
     width: 60%;
     margin-top: 2%;
-    max-width:700px;
+    max-width:650px;
     
 }
-h1{
+h2{
     margin-top: 10px;
 }

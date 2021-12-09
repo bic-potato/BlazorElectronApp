@@ -5,34 +5,51 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BlazorElectronApp.Model
 {
     public class Cat
-    {
+    {   
+        
         [Required, Key]
-        public string ID { get; set; }
- 
-        public string Name { get; set; }
- 
+        #nullable enable
+        public int ID { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        [Required]
         public int isInAtlas { get; set; }
  
-        public string nickname { get; set; }
+        public string? nickname { get; set; }
  
-        [ForeignKey("Category")]
-        public string ColorIndex { get; set; }
+        [Required, ForeignKey("Category")]
+        public int ColorIndex { get; set; }
 
-        public string Location { get; set; }
-
+        public string? Location { get; set; }
+        [Required]
         public int Sex { get; set; }
         [Required]
-        public string State { get; set; }
-
+        public string? State { get; set; }
+        [Required]
         public int isSterilize { get; set; }
 
-        public DateTime SterilizeDate { get; set; }
+        public DateTime? SterilizeDate { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
+        
+        public string? Description { get; set; }
+        [ForeignKey("Character")]
+        public int? Character { get; set; }
 
-        public string Descript { get; set; }
-  
-        public DateTime LastUpdated { get; set; }
+        public DateTime? FirstUpdate { get; set; }
 
+        public DateTime? LastUpdated { get; set; }
+
+        public string? FirstUpdatePoistion { get; set; }
+
+        public string? Relationship { get; set; }
+
+        public DateTime? AdoptionTime { get; set; }
+
+        public DateTime? DeathTime { get; set; }
+
+        public string? DeathReason { get; set; }
+
+        public int? Audio { get; set; }
     }
 }

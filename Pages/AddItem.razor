@@ -1,24 +1,75 @@
 ﻿@page "/new-item"
 @using BlazorElectronApp.Model
 @using AntDesign
-@inherits AddBase
+@inherits AddItemBase
 
 <h2>添加新项目</h2>
 <div class="formsinput">
-<Form Model="@Models" Layout="@formConfigures.Layout" Size="formConfigures.Size" >
+<Form Model="@Models" Layout="@formConfigures.Layout" Size="formConfigures.Size" OnFinish="@OnValidSubmit">
     <FormItem Label="名字" >
         <Input  @bind-Value="Models.Name"/>
     </FormItem>
     <FormItem Label="写入图鉴照片数">
         <AntDesign.InputNumber Min=0 @bind-Value="Models.isInAtlas"/>
     </FormItem>
+    <FormItem Label="性别">
+        <RadioGroup @bind-Value="Models.Sex">
+            <Radio Value="1">雄性</Radio>
+            <Radio Value="0">雌性</Radio>
+            <Radio Value="-1">未知</Radio>
+        </RadioGroup>
+    </FormItem>
+    <FormItem Label="状态">
+        <Select DataSource="@_list" ValueName="@nameof(States.Value)" LabelName="@nameof(States.Value)" @bind-Value="@Models.State"></Select>
+    </FormItem>
     <FormItem Label="昵称">
         <Input @bind-Value="Models.nickname"/>
     </FormItem>
-    <FormItem Label ="毛色分类"> 
+    <FormItem Label ="毛色分类">
+        <Select DataSource="@categories" ValueName="@nameof(Category.ID)" LabelName="@nameof(Category.Name)" @bind-Value="@Models.ColorIndex"/>
+    </FormItem>
+    <FormItem Label="是否绝育">
+        <RadioGroup @bind-Value="Models.isSterilize">
+            <Radio Value="1">是</Radio>
+            <Radio Value="-1">否</Radio>
+            <Radio Value="0">未知</Radio>
+        </RadioGroup>
     </FormItem>
     <FormItem Label="绝育时间">
-        <DatePicker @bind-Value="Models.SterilizeDate" TValue="DateTime?" Picker="@DatePickerType.Date" />
+        <DatePicker @bind-Value="Models.SterilizeDate" TValue="DateTime?" Picker="DatePickerType.Date" />
+    </FormItem>
+    <FormItem Label="出没地点">
+        <Input @bind-Value="Models.Location"></Input>
+    </FormItem>
+    <FormItem Label="出生日期">
+        <DatePicker @bind-Value="Models.Birthday" TValue="DateTime?" Picker="DatePickerType.Month" />
+    </FormItem>
+    <FormItem Label="外貌描述">
+         <TextArea @bind-Value="Models.Description" Rows="4" />
+    </FormItem>
+    <FormItem Label="性格描述">
+        <Select DataSource="@characters" ValueName="@nameof(Character.ID)" LabelName="@nameof(Character.Descript)" @bind-Value="@Models.Character"/>
+    </FormItem>
+    <FormItem Label="第一次目击时间">
+        <DatePicker @bind-Value="@Models.FirstUpdate" TValue="DateTime?" Picker="@DatePickerType.Quarter" />
+    </FormItem>
+    <FormItem Label="第一次目击地点">  
+        <Input @bind-Value="@Models.FirstUpdatePoistion"></Input>
+    </FormItem>
+    <FormItem Label="关系">
+        <Input @bind-Value="@Models.Relationship"></Input>
+    </FormItem>
+    <FormItem Label="送样时间">
+        <DatePicker @bind-Value="@Models.AdoptionTime" TValue="DateTime?" Picker="@DatePickerType.Month"></DatePicker>
+    </FormItem>
+    <FormItem Label="离世时间">
+        <DatePicker @bind-Value="@Models.DeathTime" TValue="DateTime?" Picker="@DatePickerType.Date"></DatePicker>
+    </FormItem>
+    <FormItem Label="离世原因">
+        <Input @bind-Value="@Models.DeathReason"></Input>
+    </FormItem>
+    <FormItem Label="写入音频数">
+        <AntDesign.InputNumber Min=0 @bind-Value="Models.Audio"/>
     </FormItem>
     <FormItem WrapperCol="GetButtonItemLayout()">
         <Button Type="@ButtonType.Primary" HtmlType="submit">
@@ -29,12 +80,29 @@
 </div>
 @code
 {
+    public class States
+    {
+        public string Value { get; set; }
+    }
+
+
     public class formConfigure
     {
         public string Layout = FormLayout.Vertical;
         public string Size = AntSizeLDSType.Large;
 
     }
+    List<States> _list = new List<States>
+    {
+    new States {Value = "健康"},
+    new States {Value = "许久未见"},
+    new States {Value = "失踪" },
+    new States {Value = "不明"},
+    new States {Value = "离世"},
+    new States {Value = "送养"}
+    };
+    
+
 
     formConfigure formConfigures = new();
 

@@ -2,14 +2,11 @@
 
 namespace BlazorElectronApp.Model
 {
-    public class Category
+    public class Character
     {
-
-        public string Name { get; set; }
-
-
-        [Required, Key]
-
+        [Key, Required]
         public int ID { get; set; }
+
+        public string Descript { get; set; }
     }
 }

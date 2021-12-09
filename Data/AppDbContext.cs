@@ -14,5 +14,7 @@ namespace BlazorElectronApp.Data
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Character> Characters { get; set; }
+
     }
 }

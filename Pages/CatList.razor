@@ -1,0 +1,24 @@
+﻿@page "/catlist"
+@using BlazorElectronApp.Model
+@using AntDesign
+@inherits CatListBase
+
+
+
+<h2>猫咪列表</h2>
+
+<div class="tables">
+    <Table TItem="CatsDbo" DataSource="@_catlist">
+        <Column Title="ID" @bind-Field="@context.ID"></Column>
+        <Column Title= "名字" @bind-Field="@context.Name"></Column>
+        <Column Title="毛色分类" @bind-Field="@context.Category"></Column>
+        <Column Title="性别" @bind-Field="@context.Sex"></Column>
+        <Column Title="描述" @bind-Field="@context.Description"></Column>
+    </Table>
+
+</div>
+
+@code {
+
+
+}

@@ -1,3 +1,5 @@
+using BlazorElectronApp.Data;
+using BlazorElectronApp.Model;
 using BlazorElectronApp.Utils;
 using ElectronNET.API;
 using Microsoft.AspNetCore.Hosting;
@@ -11,12 +13,20 @@ using System.Threading.Tasks;
 
 namespace BlazorElectronApp
 {
+    
     public class Program
     {
+
+
         public static void Main(string[] args)
         {
-            var database = new DbUtils();
+
             CreateHostBuilder(args).Build().Run();
+
+            using (var _dbcontext = new AppDbContext() )
+            {
+                _dbcontext.Database.EnsureCreated();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
